@@ -20,6 +20,7 @@ class MainApp extends StatelessWidget {
           primary: Color(0xff00B2E7),
           secondary: Color(0xffE064F7),
           tertiary: Color(0xffFF8D6C),
+          outline: Colors.grey,
         ),
       ),
       home: HomeScreen(),
