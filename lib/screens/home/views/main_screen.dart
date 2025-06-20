@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:expense_tracker/data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -236,7 +237,7 @@ class MainScreen extends StatelessWidget {
             const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: transactionData.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16),
@@ -257,18 +258,19 @@ class MainScreen extends StatelessWidget {
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Colors.amber,
+                                        color: transactionData[index]['color'],
                                         shape: BoxShape.circle,
                                       ),
                                       height: 60,
                                       width: 60,
                                     ),
-                                    Icon(Icons.food_bank, color: Colors.white),
+
+                                    transactionData[index]['icon'],
                                   ],
                                 ),
                                 SizedBox(width: 12),
                                 Text(
-                                  'Food',
+                                  transactionData[index]['name'],
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
@@ -281,9 +283,10 @@ class MainScreen extends StatelessWidget {
                               ],
                             ),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  '-€ 60.0',
+                                  transactionData[index]['totalAmount'],
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
@@ -294,7 +297,7 @@ class MainScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'Today',
+                                  transactionData[index]['data'],
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
