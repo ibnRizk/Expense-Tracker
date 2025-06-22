@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class AddExpense extends StatefulWidget {
   const AddExpense({super.key});
@@ -11,10 +12,12 @@ class AddExpense extends StatefulWidget {
 class _AddExpenseState extends State<AddExpense> {
   TextEditingController expenseController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
-  TextEditingController dataController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  DateTime selectedDate = DateTime.now();
   @override
   void initState() {
     super.initState();
+    dateController.text = DateFormat('dd/MM/yy').format(DateTime.now());
   }
 
   @override
@@ -74,17 +77,23 @@ class _AddExpenseState extends State<AddExpense> {
               ),
               SizedBox(height: 16),
               TextFormField(
-                controller: dataController,
-
-                readOnly: true,
+                controller: dateController,
                 textAlignVertical: TextAlignVertical.center,
-                onTap: () {
-                  showDatePicker(
+                readOnly: true,
+                onTap: () async {
+                  DateTime? newDate = await showDatePicker(
                     context: context,
-                    initialDate: DateTime.now(),
+                    initialDate: selectedDate,
                     firstDate: DateTime.now(),
-                    lastDate: DateTime.now().add(Duration(days: 365)),
+                    lastDate: DateTime.now().add(const Duration(days: 365)),
                   );
+
+                  setState(() {
+                    dateController.text = DateFormat(
+                      'dd/MM/yyyy',
+                    ).format(newDate!);
+                    selectedDate = newDate;
+                  });
                 },
                 decoration: InputDecoration(
                   filled: true,
