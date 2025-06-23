@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
@@ -24,7 +27,7 @@ class _AddExpenseState extends State<AddExpense> {
     'tech',
     'travel',
   ];
-  String iconSelected = '';
+
   @override
   void initState() {
     super.initState();
@@ -90,6 +93,8 @@ class _AddExpenseState extends State<AddExpense> {
                         context: context,
                         builder: (ctx) {
                           bool isExpanded = false;
+                          Color categoryColor = Colors.white;
+                          String iconSelected = '';
                           return StatefulBuilder(
                             builder: (context, setState) {
                               return AlertDialog(
@@ -222,15 +227,65 @@ class _AddExpenseState extends State<AddExpense> {
                                       SizedBox(height: 16),
 
                                       TextFormField(
-                                        // controller: dateController,
+                                        readOnly: true,
                                         textAlignVertical:
                                             TextAlignVertical.center,
-
+                                        onTap: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (ctx2) {
+                                              return AlertDialog(
+                                                content: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    ColorPicker(
+                                                      pickerColor: Colors.pink,
+                                                      onColorChanged: (value) {
+                                                        setState(() {
+                                                          categoryColor = value;
+                                                        });
+                                                      },
+                                                    ),
+                                                    SizedBox(
+                                                      height: 50,
+                                                      width: double.infinity,
+                                                      child: TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(ctx2);
+                                                        },
+                                                        style: TextButton.styleFrom(
+                                                          backgroundColor:
+                                                              Colors.black,
+                                                          shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                  16,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        child: Text(
+                                                          "save",
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 24,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
                                         decoration: InputDecoration(
                                           isDense: true,
 
                                           filled: true,
-                                          fillColor: Colors.white,
+                                          fillColor: categoryColor,
 
                                           hintText: 'Color',
                                           border: OutlineInputBorder(
@@ -238,6 +293,29 @@ class _AddExpenseState extends State<AddExpense> {
                                               16,
                                             ),
                                             borderSide: BorderSide.none,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 16),
+                                      SizedBox(
+                                        width: double.infinity,
+                                        height: kToolbarHeight,
+                                        child: TextButton(
+                                          onPressed: () {},
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            "save",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                       ),
