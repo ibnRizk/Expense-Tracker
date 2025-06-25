@@ -1,19 +1,27 @@
-import '../entities/category_entity.dart';
+import '../entities/entities.dart';
 
-class CategoryModel {
-  final String categoryId;
-  final String name;
-  final int totalExpenses;
-  final String icon;
-  final int color;
+class Category {
+  String categoryId;
+  String name;
+  int totalExpenses;
+  String icon;
+  int color;
 
-  CategoryModel({
+  Category({
     required this.categoryId,
     required this.name,
     required this.totalExpenses,
     required this.icon,
     required this.color,
   });
+
+  static final empty = Category(
+    categoryId: '', 
+    name: '', 
+    totalExpenses: 0, 
+    icon: '', 
+    color: 0
+  );
 
   CategoryEntity toEntity() {
     return CategoryEntity(
@@ -25,8 +33,8 @@ class CategoryModel {
     );
   }
 
-  static CategoryModel fromEntity(CategoryEntity entity) {
-    return CategoryModel(
+  static Category fromEntity(CategoryEntity entity) {
+    return Category(
       categoryId: entity.categoryId,
       name: entity.name,
       totalExpenses: entity.totalExpenses,
