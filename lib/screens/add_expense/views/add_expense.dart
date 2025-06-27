@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -95,6 +93,12 @@ class _AddExpenseState extends State<AddExpense> {
                           bool isExpanded = false;
                           Color categoryColor = Colors.white;
                           String iconSelected = '';
+                          TextEditingController categoryNameController =
+                              TextEditingController();
+                          TextEditingController categoryIconController =
+                              TextEditingController();
+                          TextEditingController categoryColorController =
+                              TextEditingController();
                           return StatefulBuilder(
                             builder: (context, setState) {
                               return AlertDialog(
@@ -302,7 +306,9 @@ class _AddExpenseState extends State<AddExpense> {
                                         width: double.infinity,
                                         height: kToolbarHeight,
                                         child: TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            //create category object
+                                          },
                                           style: TextButton.styleFrom(
                                             backgroundColor: Colors.black,
                                             shape: RoundedRectangleBorder(
