@@ -1,3 +1,4 @@
+import 'package:expense_tracker/screens/add_expense/views/category_creation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -75,12 +76,40 @@ class _AddExpenseState extends State<AddExpense> {
                     icon: Icon(FontAwesomeIcons.plus),
                     iconSize: 18,
                     color: Colors.grey,
-                    onPressed: () {},
+                    onPressed: () {
+                      getCategoryCreation(context);
+                    },
                   ),
                   hintText: 'Category',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(12),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView.builder(
+                    itemBuilder: (context, int i) {
+                      return Card(
+                        child: ListTile(
+                          onTap: () {},
+
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
