@@ -46,21 +46,21 @@ class _ChartState extends State<Chart> {
   List<BarChartGroupData> showingGroups() => List.generate(8, (i) {
     switch (i) {
       case 0:
-        return makeGroupData(0, 2);
+        return makeGroupData(0, 4);
       case 1:
-        return makeGroupData(1, 3);
+        return makeGroupData(1, 2.6);
       case 2:
-        return makeGroupData(2, 2);
+        return makeGroupData(2, 1.7);
       case 3:
         return makeGroupData(3, 4.5);
       case 4:
-        return makeGroupData(4, 3.8);
+        return makeGroupData(4, .8);
       case 5:
         return makeGroupData(5, 1.5);
       case 6:
         return makeGroupData(6, 4);
       case 7:
-        return makeGroupData(7, 3.8);
+        return makeGroupData(7, 1.9);
       default:
         return throw Error();
     }
